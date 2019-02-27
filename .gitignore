@@ -1,2 +1,5 @@
 venv/
 .idea/
+messenger/chat/__pycache__/
+messenger/chat/migrations/__pycache__/
+messenger/messenger/__pycache__/
