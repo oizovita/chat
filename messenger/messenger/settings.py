@@ -136,6 +136,6 @@ CHANNEL_LAYERS = {
 }
 
 # Redirect to home URL after login (Default redirects to /accounts/profile/)
-LOGIN_REDIRECT_URL = '/chat/createchat/global'
+LOGIN_REDIRECT_URL = '/chat/global'
 
 #ACCOUNT_ACTIVATION_DAYS = 7

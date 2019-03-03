@@ -10,7 +10,9 @@ class RegisterForm(forms.Form):
 class CreatChat(forms.ModelForm):
     class Meta:
         model = NameChat
-
+        widgets = {
+            'chat_name': forms.TextInput(attrs={'placeholder': 'Enter new chat name'}),
+        }
         fields = ('chat_name',)
 
     check = forms.ModelMultipleChoiceField(widget=forms.CheckboxSelectMultiple, queryset=User.objects.all())
