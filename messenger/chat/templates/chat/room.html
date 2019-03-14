@@ -33,8 +33,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col">
-            <div class="form-control" id="chat-log" style="width:550px; height:400px">
-
+            <div class="form-control" id="chat-log" style="width:550px; height:400px; overflow:scroll">
             </div><br/>
             <input class="form-control" id="chat-message-input" type="text" placeholder="Enter message"
                    size="100"/><br/>
@@ -105,7 +104,7 @@
     chatSocket.onmessage = function(e) {
         var data = JSON.parse(e.data);
         var message = data['message'];
-        $('#chat-log').append(message)    
+        $('#chat-log').append(message)
     };
 
     chatSocket.onclose = function(e) {
