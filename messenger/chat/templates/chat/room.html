@@ -19,7 +19,7 @@
         {% if user.is_authenticated %}
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
-               aria-expanded="false">User: {{ user.get_id }} </a>
+               aria-expanded="false">User: {{ user.get_username }} </a>
             <div class="dropdown-menu">
                 <a href="{% url 'logout'%}?next={{request.path}}">Logout</a>
                 {% else %}
@@ -33,7 +33,9 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col">
-            <textarea class="form-control" id="chat-log" cols="100" rows="15"></textarea><br/>
+            <div class="form-control" id="chat-log" style="width:550px; height:400px">
+
+            </div><br/>
             <input class="form-control" id="chat-message-input" type="text" placeholder="Enter message"
                    size="100"/><br/>
             <input class="form-control" id="chat-message-submit" type="button" value="Send"/>
@@ -46,7 +48,6 @@
                 {% for chat in chats %}
                 <li class="list-group-item d-flex justify-content-between align-items-center">
                     <a href="/chat/{{ chat }}" >{{chat}}</a>
-                    <a href="/delete/{{ user.id }}/{{ chat }}/">Delete</a>
                 </li>
 
                 {% endfor %}
@@ -57,7 +58,6 @@
             <form action="." method="post">
                 {% csrf_token%}
                 <div class="form-group row">
-
                     <div class="col-sm-10">
                         {{ form.chat_name }}
                     </div>
@@ -79,8 +79,6 @@
                     </div>
                 </div>
             </form>
-
-
         </div>
     </div>
 </div>
@@ -98,7 +96,7 @@
         var messageInputDom = document.querySelector('#chat-message-input');
         var message = messageInputDom.value;
         chatSocket.send(JSON.stringify({
-            'message': '{{user.get_username}}' + ' enterd chat'
+            'message': "<span style='color: {{user.usercolor.color}}'>{{user.get_username}} enterd chat</span><br/>"
         }));
 
         messageInputDom.value = '';
@@ -106,10 +104,8 @@
 
     chatSocket.onmessage = function(e) {
         var data = JSON.parse(e.data);
-        console.log(data);
         var message = data['message'];
-
-        document.querySelector('#chat-log').value += ( message + '\n');
+        $('#chat-log').append(message)    
     };
 
     chatSocket.onclose = function(e) {
@@ -125,11 +121,14 @@
     };
 
     document.querySelector('#chat-message-submit').onclick = function(e) {
+
         var messageInputDom = document.querySelector('#chat-message-input');
+
         var message = messageInputDom.value;
 
+
         chatSocket.send(JSON.stringify({
-            'message': '{{user.get_username}}'+':'+ message
+            'message': "<span style='color: {{user.usercolor.color}}'>{{user.get_username}} :</span>" +   message + "<br/>"
         }));
 
         messageInputDom.value = '';

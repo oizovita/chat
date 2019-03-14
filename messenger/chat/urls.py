@@ -8,6 +8,4 @@ urlpatterns = [
     url(r'^chat/$', RedirectView.as_view(url='global/')),
     url('register/', views.register, name='register'),
     url(r'^chat/(?P<room_name>[^/]+)/$', views.room, name='room'),
-    url('delete/<int: user>/<chat_name>/', views.delete, name='delete'),
 ]
-
