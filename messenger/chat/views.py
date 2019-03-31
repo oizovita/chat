@@ -1,7 +1,6 @@
 import json
 import os
 import random
-
 from django.http import HttpResponseRedirect, HttpResponseNotFound
 from django.shortcuts import render, redirect
 from django.utils.safestring import mark_safe
