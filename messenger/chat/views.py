@@ -29,6 +29,7 @@ create_folder('log')
 def r(): return random.randint(0, 255)
 
 
+# Main page chat
 def room(request, room_name):
     if not request.user.is_authenticated:
         return HttpResponseRedirect("/login/")
@@ -60,6 +61,8 @@ def room(request, room_name):
     return render(request, 'chat/room.html', {'room_name_json': mark_safe(json.dumps(room_name)), "form": form,
                                               'users': users, 'chats': user_chats})
 
+
+# Registration user in chat
 def register(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
@@ -69,7 +72,7 @@ def register(request):
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)
             UserColor.objects.create(color='#%02X%02X%02X' %
-                                     (r(), r(), r()), user=user)
+                                           (r(), r(), r()), user=user)
             login(request, user)
             return redirect('login')
     else:
