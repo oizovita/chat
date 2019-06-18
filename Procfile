@@ -1,1 +1,1 @@
-web: gunicorn messenger.messenger.wsgi 
+web: gunicorn messenger.wsgi 
