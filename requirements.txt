@@ -9,9 +9,11 @@ channels-redis==2.3.3
 confusable-homoglyphs==3.2.0
 constantly==15.1.0
 daphne==2.2.5
+dj-database-url==0.5.0
 Django==2.1.7
 django-bootstrap4==0.0.7
 django-registration==3.0
+gunicorn==19.9.0
 hiredis==1.0.0
 hyperlink==18.0.0
 idna==2.8
