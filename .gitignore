@@ -4,4 +4,4 @@ __pycache__/
 pycache/
 *.pyc
 log/
-
+db.sqlite3
